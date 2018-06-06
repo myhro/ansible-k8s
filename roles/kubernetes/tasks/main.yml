@@ -1,0 +1,22 @@
+---
+- name: add apt key
+  apt_key:
+    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+
+- name: add apt repository
+  apt_repository:
+    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+- name: install packages
+  apt:
+    name: "{{ item }}={{ kubernetes_version }}-00"
+  with_items:
+    - kubelet
+    - kubectl
+    - kubeadm
+
+- name: copy bootstrap script
+  copy:
+    src: init-cluster.sh
+    dest: /usr/local/bin/init-cluster.sh
+    mode: 0755
