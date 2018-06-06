@@ -1,0 +1,18 @@
+---
+- name: add repository key
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+
+- name: add repository url
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu xenial stable"
+
+- name: install package
+  apt:
+    name: docker-ce
+
+- name: add user to group
+  user:
+    name: "{{ docker_user }}"
+    group: docker
+    append: "yes"
