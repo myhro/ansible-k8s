@@ -10,9 +10,3 @@
 - name: install package
   apt:
     name: docker-ce
-
-- name: add user to group
-  user:
-    name: "{{ docker_user }}"
-    group: docker
-    append: "yes"
