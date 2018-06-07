@@ -5,7 +5,8 @@
 
 - name: add repository url
   apt_repository:
-    repo: "deb https://download.docker.com/linux/ubuntu xenial stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+      xenial stable"
 
 - name: install package
   apt:
