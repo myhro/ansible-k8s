@@ -10,10 +10,13 @@
 - name: install packages
   apt:
     name: "{{ item }}={{ kubernetes_version }}-00"
-  with_items:
-    - kubelet
-    - kubectl
-    - kubeadm
+  with_items: "{{ kubernetes_packages }}"
+
+- name: hold packages
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  with_items: "{{ kubernetes_packages }}"
 
 - name: copy bootstrap script
   copy:

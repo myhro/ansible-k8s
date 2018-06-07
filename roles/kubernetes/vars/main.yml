@@ -1,0 +1,7 @@
+---
+# The package order is important, otherwise 'kubeadm' would install the latest
+# version of the others as its dependency, ignoring the version pinning.
+kubernetes_packages:
+  - kubelet
+  - kubectl
+  - kubeadm
