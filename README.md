@@ -25,6 +25,18 @@ Variable | Description | Default value
 -------- | ----------- | -------------
 `kubernetes_version` | Kubernetes release that is going to be installed. | `1.9.8`
 
+## Firewall
+
+The following connectivity between nodes should be allowed within the cluster:
+
+Port | Protocol | Scope | Description
+---- | -------- | ----- | -----------
+`80` | `TCP` | `worker` | [Træfik][traefik] HTTP ingress.
+`6443` | `TCP` | `master` | Kubernetes API server.
+`8472` | `UDP` | `all` | [Flannel][flannel] VXLAN backend used for pod networking.
+
+External connections are use-case dependant. For instance, all internet HTTP traffic could be forbidden, but allowed from a proper HTTPS load balancer. In the same way, it probably makes sense to allow internet connections to the Kubernetes API server in order to allow developers to use `kubectl` from their workstations.
+
 ## Cluster bootstrap
 
 After the playbook execution, the `init-cluster.sh` script should be run on the master node. The process shouldn't take more than a minute or two. If it takes longer, it has probably failed.
@@ -71,3 +83,7 @@ ip-172-31-47-133   Ready     master    2m        v1.9.8
 By default worker nodes doesn't have defined roles, so it may be interesting to add this information:
 
     kubectl label node ip-172-31-41-85 node-role.kubernetes.io/worker=
+
+
+[flannel]: https://coreos.com/flannel/docs/latest/
+[traefik]: https://traefik.io/
