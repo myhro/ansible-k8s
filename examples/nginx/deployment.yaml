@@ -7,11 +7,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      application: nginx
+      app: nginx
   template:
     metadata:
       labels:
-        application: nginx
+        app: nginx
     spec:
       containers:
         - name: nginx
