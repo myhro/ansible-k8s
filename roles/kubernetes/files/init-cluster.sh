@@ -13,4 +13,5 @@ sudo cp /etc/kubernetes/admin.conf "$KUBE_CONFIG"
 sudo chown "$USER:$USER" "$KUBE_CONFIG"
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/myhro/ansible-k8s/master/manifests/limits.yaml
 kubectl apply -f https://raw.githubusercontent.com/myhro/ansible-k8s/master/manifests/traefik.yaml
