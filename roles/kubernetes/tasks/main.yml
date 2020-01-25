@@ -8,16 +8,23 @@
   apt_repository:
     repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
+# The package order is important, otherwise 'kubeadm' would install the latest
+# version of the others as its dependencies ignoring the version pinning.
 - name: install packages
   apt:
-    name: "{{ item }}={{ kubernetes_version }}-00"
-  with_items: "{{ kubernetes_packages }}"
+    name:
+      - "kubelet={{ kubernetes_version }}-00"
+      - "kubectl={{ kubernetes_version }}-00"
+      - "kubeadm={{ kubernetes_version }}-00"
 
 - name: hold packages
   dpkg_selections:
     name: "{{ item }}"
     selection: hold
-  with_items: "{{ kubernetes_packages }}"
+  with_items:
+    - kubelet
+    - kubectl
+    - kubeadm
 
 - name: copy bootstrap script
   copy:
