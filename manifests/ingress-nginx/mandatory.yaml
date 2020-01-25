@@ -236,9 +236,11 @@ spec:
           ports:
             - name: http
               containerPort: 80
+              hostPort: 80
               protocol: TCP
             - name: https
               containerPort: 443
+              hostPort: 443
               protocol: TCP
           livenessProbe:
             failureThreshold: 3
