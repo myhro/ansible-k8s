@@ -6,4 +6,4 @@
     - roles/docker
     - roles/kubernetes
   vars:
-    kubernetes_version: 1.9.8
+    kubernetes_version: 1.17.2
