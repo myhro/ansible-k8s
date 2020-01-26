@@ -25,6 +25,16 @@ Variable | Description | Default value
 -------- | ----------- | -------------
 `kubernetes_version` | Kubernetes release that is going to be installed. | `1.17.2`
 
+## Optional Components
+
+There are additional components in the `manifests/` directory that can be easily deployed to the cluster with `kubectl apply -f <folder>`:
+
+Name | Description
+---- | -----------
+[cert-manager] | Automate [Let's Encrypt][letsencrypt] certificates issuance/renewal.
+[ingress-nginx] | Easy way to serve HTTP traffic.
+[metrics-server] | Enable `kubectl top` commands.
+
 ## Firewall
 
 The following connectivity between nodes should be allowed within the cluster:
@@ -86,6 +96,10 @@ By default worker nodes doesn't have any defined roles, so it may be interesting
     kubectl label node ip-172-31-41-85 node-role.kubernetes.io/worker=
 
 
+[cert-manager]: https://github.com/jetstack/cert-manager
 [flannel]: https://coreos.com/flannel/docs/latest/
+[ingress-nginx]: https://github.com/kubernetes/ingress-nginx
 [kubelet]: https://kubernetes.io/docs/concepts/overview/components/#node-components
 [kubernetes-api]: https://kubernetes.io/docs/concepts/overview/components/#master-components
+[letsencrypt]: https://letsencrypt.org/
+[metrics-server]: https://github.com/kubernetes-sigs/metrics-server
