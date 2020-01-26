@@ -17,7 +17,7 @@ The same roles are applied to both master and worker nodes, so there's no need t
 
 The nodes should run Ubuntu 18.04 LTS (Bionic Beaver). The roles can be applied using the playbook:
 
-    $ ansible-playbook -i inventory/aws -u ubuntu playbooks/kubernetes.yml
+    $ ansible-playbook -b -i inventory/aws -u ubuntu playbooks/kubernetes.yml
 
 It supports the following settings through playbook variables:
 
