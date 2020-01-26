@@ -27,7 +27,9 @@ Variable | Description | Default value
 
 ## Optional Components
 
-There are additional components in the `manifests/` directory that can be easily deployed to the cluster with `kubectl apply -f <folder>`:
+There are additional components in the `manifests/` directory that can be easily deployed to the cluster with:
+
+    kubectl apply -f <folder>
 
 Name | Description
 ---- | -----------
@@ -41,7 +43,7 @@ The following connectivity between nodes should be allowed within the cluster:
 
 Port | Protocol | Scope | Description
 ---- | -------- | ----- | -----------
-`80` | `TCP` | `worker` | HTTP ingress.
+`80/443` | `TCP` | `worker` | HTTP(S) ingress.
 `6443` | `TCP` | `master` | [Kubernetes API][kubernetes-api] server.
 `8472` | `UDP` | `all` | [Flannel][flannel] VXLAN backend used for pod networking.
 `10250` | `TCP` | `all` | [Kubelet][kubelet] agent.
