@@ -11,9 +11,7 @@
 - name: install packages
   apt:
     name: "{{ kubernetes_packages |
-      zip_longest([], fillvalue=kubernetes_version) |
-      map('join', '=') |
-      map('regex_replace', '$', '-00') |
+      map('regex_replace', '$', '=' + kubernetes_version + '-00') |
       list
     }}"
 
